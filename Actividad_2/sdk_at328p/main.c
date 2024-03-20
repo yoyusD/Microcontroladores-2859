@@ -28,7 +28,7 @@ int main(void)
 	init_i2c();
 	lcd_i2c_init();
 	//This is the scrolling writing function
-	//lcd_i2c_long_shift("A partir del desarrollo de circuitos Integrados Digitales programables con una gran cantidad de componentes lógicos y la necesidad de sistema digitales para aplicaciones mas complejas, las herramientas de diseño tradicionales se vuelven cada vez más ineficientes y poco efectivas para lograr desarrollos adecuados, por lo tanto las empresas fabricantes de circuitos integrados desarrollan herramientas más útiles, originándose así los HDL ó Lenguajes de Descripción de hardware. Así");
+	lcd_i2c_long_shift("A partir del desarrollo de circuitos Integrados Digitales programables con una gran cantidad de componentes lógicos y la necesidad de sistema digitales para aplicaciones mas complejas, las herramientas de diseño tradicionales se vuelven cada vez más ineficientes y poco efectivas para lograr desarrollos adecuados, por lo tanto las empresas fabricantes de circuitos integrados desarrollan herramientas más útiles, originándose así los HDL ó Lenguajes de Descripción de hardware. Así");
 	
 	LCD_Custom_Char(0, Character1);
 	LCD_Custom_Char(1, Character2);
