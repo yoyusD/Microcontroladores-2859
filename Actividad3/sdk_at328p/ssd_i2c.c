@@ -13,7 +13,7 @@
 
 void ssd_i2c_init (void){
 	init_i2c();				//****init I2C****
-	//lcd_i2c_reset();		// Reset LCD.
+	lcd_i2c_reset();		// Reset LCD.
 	ssd_i2c_cmd(0xAE);		// Set display OFF
 	ssd_i2c_cmd(0xD4);		// Set Display Clock Divide Ratio / OSC Frequency
 	ssd_i2c_cmd(0x80);		// Display Clock Divide Ratio / OSC Frequency 

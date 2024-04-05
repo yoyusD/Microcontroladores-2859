@@ -145,7 +145,7 @@ void write_adc(void){
 	};
 	//type in the screen : ADC0
 	set_cursor(0,64);
-	ssd_write(0x7F);
+	ssd_write(0x00);
 	for( int r = 0; r < 21; r++){
 		ssd_write(adc[r]);
 	}

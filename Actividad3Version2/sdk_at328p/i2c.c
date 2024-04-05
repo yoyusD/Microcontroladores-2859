@@ -12,7 +12,7 @@
 void init_i2c(void)
 {
 	TWSR = ((0 << TWPS1) & (0 << TWPS0)); //Prescaler = 1
-	TWBR = 0X01; //Define Bit rate SCL_frec=CPU_frec/(16+2(TWBR)x4^(prescaler))
+	TWBR = 0X14; //Define Bit rate SCL_frec=CPU_frec/(16+2(TWBR)x4^(prescaler))
 				//SCL_Frec=(16000000/(16+2(20)(4)))=74Khz
 	TWCR = (1<<TWEN); //Enable TWI
 }

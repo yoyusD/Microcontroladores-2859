@@ -15,19 +15,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 00000208  00000000  00000000  00001c5c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000027cd  00000000  00000000  00001e64  2**0
+  6 .debug_info   000027cc  00000000  00000000  00001e64  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000f4e  00000000  00000000  00004631  2**0
+  7 .debug_abbrev 00000f4e  00000000  00000000  00004630  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000017c5  00000000  00000000  0000557f  2**0
+  8 .debug_line   000017c5  00000000  00000000  0000557e  2**0
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  000005a8  00000000  00000000  00006d44  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000070d  00000000  00000000  000072ec  2**0
+ 10 .debug_str    00000714  00000000  00000000  000072ec  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000015fc  00000000  00000000  000079f9  2**0
+ 11 .debug_loc    000015fc  00000000  00000000  00007a00  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000298  00000000  00000000  00008ff5  2**0
+ 12 .debug_ranges 00000298  00000000  00000000  00008ffc  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -721,8 +721,8 @@ void init_i2c(void)
 {
 	TWSR = ((0 << TWPS1) & (0 << TWPS0)); //Prescaler = 1
      506:	10 92 b9 00 	sts	0x00B9, r1	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7f80b9>
-	TWBR = 0X01; //Define Bit rate SCL_frec=CPU_frec/(16+2(TWBR)x4^(prescaler))
-     50a:	81 e0       	ldi	r24, 0x01	; 1
+	TWBR = 0X14; //Define Bit rate SCL_frec=CPU_frec/(16+2(TWBR)x4^(prescaler))
+     50a:	84 e1       	ldi	r24, 0x14	; 20
      50c:	80 93 b8 00 	sts	0x00B8, r24	; 0x8000b8 <__TEXT_REGION_LENGTH__+0x7f80b8>
 				//SCL_Frec=(16000000/(16+2(20)(4)))=74Khz
 	TWCR = (1<<TWEN); //Enable TWI
@@ -779,12 +779,6 @@ void write_i2c(uint8_t data)
      54e:	08 95       	ret
 
 00000550 <lcd_i2c_cmd>:
-	
-	lcd_i2c_cmd(0x2C);		// Function Set: 4 bits mode, 2 lines, 5×10 resolution
-	//lcd_i2c_cmd(0x0F);	// Display control: LCD on, cursor on, blinking
-	lcd_i2c_cmd(0x0C);		// cursor off
-	lcd_i2c_cmd(0x06);		// Entry mode: Increment.
-	lcd_i2c_cmd(0x80);		// points to DDRAM.
      550:	cf 93       	push	r28
      552:	df 93       	push	r29
      554:	c8 2f       	mov	r28, r24
@@ -826,52 +820,30 @@ void write_i2c(uint8_t data)
      5aa:	08 95       	ret
 
 000005ac <lcd_i2c_data>:
-}
-
-/*	display character	*/
-void lcd_i2c_data (unsigned char dat)
-{
      5ac:	cf 93       	push	r28
      5ae:	df 93       	push	r29
      5b0:	c8 2f       	mov	r28, r24
-	unsigned char data;
-	start();	//START--> I2C
      5b2:	0e 94 8c 02 	call	0x518	; 0x518 <start>
-	write_i2c(PCF8574_ADDR);
      5b6:	80 e7       	ldi	r24, 0x70	; 112
      5b8:	0e 94 9e 02 	call	0x53c	; 0x53c <write_i2c>
-
-	data=((dat & 0xF0)|LCD_EN|LCD_RS|LUZ_FONDO);
      5bc:	dc 2f       	mov	r29, r28
      5be:	d0 7f       	andi	r29, 0xF0	; 240
-	write_i2c(data);
      5c0:	8d 2f       	mov	r24, r29
      5c2:	8d 60       	ori	r24, 0x0D	; 13
      5c4:	0e 94 9e 02 	call	0x53c	; 0x53c <write_i2c>
-
-	data=((dat & 0xF0)|LCD_RS|LUZ_FONDO);
-	write_i2c(data);
      5c8:	8d 2f       	mov	r24, r29
      5ca:	89 60       	ori	r24, 0x09	; 9
      5cc:	0e 94 9e 02 	call	0x53c	; 0x53c <write_i2c>
-
-	data=(((dat << 4) & 0xF0)|LCD_EN|LCD_RS|LUZ_FONDO);
      5d0:	80 e1       	ldi	r24, 0x10	; 16
      5d2:	c8 9f       	mul	r28, r24
      5d4:	e0 01       	movw	r28, r0
      5d6:	11 24       	eor	r1, r1
-	write_i2c(data);
      5d8:	8c 2f       	mov	r24, r28
      5da:	8d 60       	ori	r24, 0x0D	; 13
      5dc:	0e 94 9e 02 	call	0x53c	; 0x53c <write_i2c>
-
-	data=(((dat << 4) & 0xF0)|LCD_RS|LUZ_FONDO);
-	write_i2c(data);
      5e0:	8c 2f       	mov	r24, r28
      5e2:	89 60       	ori	r24, 0x09	; 9
      5e4:	0e 94 9e 02 	call	0x53c	; 0x53c <write_i2c>
-
-	stop();	// STOP--> I2C
      5e8:	0e 94 94 02 	call	0x528	; 0x528 <stop>
      5ec:	8f e3       	ldi	r24, 0x3F	; 63
      5ee:	9f e1       	ldi	r25, 0x1F	; 31
@@ -885,19 +857,11 @@ void lcd_i2c_data (unsigned char dat)
      5fe:	f1 f7       	brne	.-4      	; 0x5fc <lcd_i2c_data+0x50>
      600:	00 c0       	rjmp	.+0      	; 0x602 <lcd_i2c_data+0x56>
      602:	00 00       	nop
-	_delay_ms(2);
-	_delay_ms(2);
-}
      604:	df 91       	pop	r29
      606:	cf 91       	pop	r28
      608:	08 95       	ret
 
 0000060a <lcd_i2c_col_row>:
-
-/* set cursor on specified column&row	*/
-void lcd_i2c_col_row(uint8_t x, uint8_t y)
-{
-	lcd_i2c_cmd(0x80 + Columna_1[y-1]+(x-1));
      60a:	e6 2f       	mov	r30, r22
      60c:	f0 e0       	ldi	r31, 0x00	; 0
      60e:	e1 50       	subi	r30, 0x01	; 1
@@ -909,12 +873,6 @@ void lcd_i2c_col_row(uint8_t x, uint8_t y)
      61c:	08 95       	ret
 
 0000061e <lcd_i2c_clr>:
-}
-
-/*	clear screen	*/
-void lcd_i2c_clr(void)
-{
-	lcd_i2c_cmd(0x01); //clear LCD (0000 0001)
      61e:	81 e0       	ldi	r24, 0x01	; 1
      620:	0e 94 a8 02 	call	0x550	; 0x550 <lcd_i2c_cmd>
      624:	8f e3       	ldi	r24, 0x3F	; 63
@@ -926,30 +884,15 @@ void lcd_i2c_clr(void)
      630:	08 95       	ret
 
 00000632 <lcd_i2c_write_string>:
-	_delay_ms(2);
-}
-
-/*	write character string	*/
-void lcd_i2c_write_string(char *a)
-{
      632:	0f 93       	push	r16
      634:	1f 93       	push	r17
      636:	cf 93       	push	r28
      638:	df 93       	push	r29
      63a:	8c 01       	movw	r16, r24
-	unsigned int i;
-	for(i=0;a[i]!=0;i++)
      63c:	c0 e0       	ldi	r28, 0x00	; 0
      63e:	d0 e0       	ldi	r29, 0x00	; 0
      640:	03 c0       	rjmp	.+6      	; 0x648 <lcd_i2c_write_string+0x16>
-	lcd_i2c_data(a[i]);
      642:	0e 94 d6 02 	call	0x5ac	; 0x5ac <lcd_i2c_data>
-
-/*	write character string	*/
-void lcd_i2c_write_string(char *a)
-{
-	unsigned int i;
-	for(i=0;a[i]!=0;i++)
      646:	21 96       	adiw	r28, 0x01	; 1
      648:	f8 01       	movw	r30, r16
      64a:	ec 0f       	add	r30, r28
@@ -957,8 +900,6 @@ void lcd_i2c_write_string(char *a)
      64e:	80 81       	ld	r24, Z
      650:	81 11       	cpse	r24, r1
      652:	f7 cf       	rjmp	.-18     	; 0x642 <lcd_i2c_write_string+0x10>
-	lcd_i2c_data(a[i]);
-}
      654:	df 91       	pop	r29
      656:	cf 91       	pop	r28
      658:	1f 91       	pop	r17
@@ -966,51 +907,24 @@ void lcd_i2c_write_string(char *a)
      65c:	08 95       	ret
 
 0000065e <main>:
-#include <avr/interrupt.h>
-#include "ssd_i2c.h"
-
-int main(void)
-{
-    init_ports();
      65e:	0e 94 3f 03 	call	0x67e	; 0x67e <init_ports>
-	init_i2c();
      662:	0e 94 83 02 	call	0x506	; 0x506 <init_i2c>
-	init_ext_int();
      666:	0e 94 7a 02 	call	0x4f4	; 0x4f4 <init_ext_int>
-	init_analog_comp();
      66a:	0e 94 09 02 	call	0x412	; 0x412 <init_analog_comp>
-	ssd_i2c_init();
      66e:	0e 94 65 03 	call	0x6ca	; 0x6ca <ssd_i2c_init>
-	graphic();
      672:	0e 94 47 04 	call	0x88e	; 0x88e <graphic>
-	init_adc_withINT();
      676:	0e 94 c2 01 	call	0x384	; 0x384 <init_adc_withINT>
-
-	/**********************************/
-	sei(); /*enable general interrupts*/
      67a:	78 94       	sei
      67c:	ff cf       	rjmp	.-2      	; 0x67c <main+0x1e>
 
 0000067e <init_ports>:
- */ 
-#include <avr/io.h>
-
-void init_ports(void)
-{
-	DDRB = 0xFF;
      67e:	8f ef       	ldi	r24, 0xFF	; 255
      680:	84 b9       	out	0x04, r24	; 4
-	// PD2 input for INT0, PD3 input for INT1
-	DDRD &= (0 << PIND2) | (0 << PIND3);
      682:	8a b1       	in	r24, 0x0a	; 10
      684:	1a b8       	out	0x0a, r1	; 10
-	PORTD |= (1 << PIND2) | (1 << PIND3); //enable Rp
      686:	8b b1       	in	r24, 0x0b	; 11
      688:	8c 60       	ori	r24, 0x0C	; 12
      68a:	8b b9       	out	0x0b, r24	; 11
-	// PC0 input for ADC0
-	// First set ADC0-2 pins in output
-	DDRC = (0 << PINC0)|(0 << PINC1)|(0 << PINC2);
      68c:	17 b8       	out	0x07, r1	; 7
      68e:	08 95       	ret
 
@@ -1286,8 +1200,8 @@ void write_adc(void){
      826:	60 e4       	ldi	r22, 0x40	; 64
      828:	80 e0       	ldi	r24, 0x00	; 0
      82a:	0e 94 ca 03 	call	0x794	; 0x794 <set_cursor>
-	ssd_write(0x7F);
-     82e:	8f e7       	ldi	r24, 0x7F	; 127
+	ssd_write(0x00);
+     82e:	80 e0       	ldi	r24, 0x00	; 0
      830:	0e 94 ad 03 	call	0x75a	; 0x75a <ssd_write>
 	for( int r = 0; r < 21; r++){
      834:	00 e0       	ldi	r16, 0x00	; 0
@@ -1306,7 +1220,7 @@ void write_adc(void){
 	};
 	//type in the screen : ADC0
 	set_cursor(0,64);
-	ssd_write(0x7F);
+	ssd_write(0x00);
 	for( int r = 0; r < 21; r++){
      84c:	0f 5f       	subi	r16, 0xFF	; 255
      84e:	1f 4f       	sbci	r17, 0xFF	; 255
@@ -1329,7 +1243,7 @@ void write_adc(void){
      868:	80 81       	ld	r24, Z
      86a:	0e 94 ad 03 	call	0x75a	; 0x75a <ssd_write>
 	set_cursor(0,64);
-	ssd_write(0x7F);
+	ssd_write(0x00);
 	for( int r = 0; r < 21; r++){
 		ssd_write(adc[r]);
 	}

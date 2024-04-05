@@ -874,7 +874,7 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x27cd
+.debug_info     0x00000000     0x27cc
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_info    0x000005f4      0x250 adc.o
@@ -884,8 +884,8 @@ END GROUP
  .debug_info    0x00000d58      0x778 lcd_i2c.o
  .debug_info    0x000014d0      0x11c main.o
  .debug_info    0x000015ec       0x83 ports.o
- .debug_info    0x0000166f      0xfd7 ssd_i2c.o
- .debug_info    0x00002646      0x187 usart.o
+ .debug_info    0x0000166f      0xfd6 ssd_i2c.o
+ .debug_info    0x00002645      0x187 usart.o
 
 .debug_abbrev   0x00000000      0xf4e
  *(.debug_abbrev)
@@ -925,26 +925,26 @@ END GROUP
  .debug_frame   0x000003b0      0x138 ssd_i2c.o
  .debug_frame   0x000004e8       0xc0 usart.o
 
-.debug_str      0x00000000      0x70d
+.debug_str      0x00000000      0x714
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_str     0x00000208      0x1fe adc.o
-                                0x23c (size before relaxing)
- .debug_str     0x00000406       0xd7 comp.o
+ .debug_str     0x00000208      0x205 adc.o
+                                0x243 (size before relaxing)
+ .debug_str     0x0000040d       0xd7 comp.o
                                 0x1f1 (size before relaxing)
- .debug_str     0x000004dd       0x32 ext_int.o
+ .debug_str     0x000004e4       0x32 ext_int.o
                                 0x1fa (size before relaxing)
- .debug_str     0x0000050f       0x72 i2c.o
-                                0x1dc (size before relaxing)
- .debug_str     0x00000581       0x72 lcd_i2c.o
+ .debug_str     0x00000516       0x32 i2c.o
+                                0x1ec (size before relaxing)
+ .debug_str     0x00000548       0xb2 lcd_i2c.o
                                 0x279 (size before relaxing)
- .debug_str     0x000005f3       0x31 main.o
+ .debug_str     0x000005fa       0x31 main.o
                                 0x1bb (size before relaxing)
- .debug_str     0x00000624        0xd ports.o
+ .debug_str     0x0000062b        0xd ports.o
                                 0x172 (size before relaxing)
- .debug_str     0x00000631       0x68 ssd_i2c.o
-                                0x28c (size before relaxing)
- .debug_str     0x00000699       0x74 usart.o
+ .debug_str     0x00000638       0x68 ssd_i2c.o
+                                0x293 (size before relaxing)
+ .debug_str     0x000006a0       0x74 usart.o
                                 0x1ca (size before relaxing)
 
 .debug_loc      0x00000000     0x15fc
