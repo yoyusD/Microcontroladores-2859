@@ -23,11 +23,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  000005c4  00000000  00000000  00006884  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000719  00000000  00000000  00006e48  2**0
+ 10 .debug_str    00000762  00000000  00000000  00006e48  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000016f7  00000000  00000000  00007561  2**0
+ 11 .debug_loc    000016f7  00000000  00000000  000075aa  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000002a0  00000000  00000000  00008c58  2**0
+ 12 .debug_ranges 000002a0  00000000  00000000  00008ca1  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -662,42 +662,22 @@ void init_adc_withINT(void)
      4b6:	08 95       	ret
 
 000004b8 <init_i2c>:
-#include <util/delay.h>
-#include "i2c.h"
-
-void init_i2c(void)
-{
-	TWSR = ((0 << TWPS1) & (0 << TWPS0)); //Prescaler = 1
      4b8:	10 92 b9 00 	sts	0x00B9, r1	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7f80b9>
-	TWBR = 0x14; //Define Bit rate SCL_frec=CPU_frec/(16+2(TWBR)x4^(prescaler))
      4bc:	84 e1       	ldi	r24, 0x14	; 20
      4be:	80 93 b8 00 	sts	0x00B8, r24	; 0x8000b8 <__TEXT_REGION_LENGTH__+0x7f80b8>
-				//SCL_Frec=(16000000/(16+2(20)(4)))=74Khz
-	TWCR = (1<<TWEN); //Enable TWI
      4c2:	84 e0       	ldi	r24, 0x04	; 4
      4c4:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
      4c8:	08 95       	ret
 
 000004ca <start>:
-}
-
-void start(void)
-{
-	TWCR = (1<<TWINT)|(1<<TWSTA)|(1<<TWEN); //START condition
      4ca:	84 ea       	ldi	r24, 0xA4	; 164
      4cc:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
-	while((TWCR & (1<<TWINT))==0); //wait until TWINT=0 (TWI then finish)
      4d0:	80 91 bc 00 	lds	r24, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
      4d4:	88 23       	and	r24, r24
      4d6:	e4 f7       	brge	.-8      	; 0x4d0 <start+0x6>
-}
      4d8:	08 95       	ret
 
 000004da <stop>:
-
-void stop(void)
-{
-	TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWSTO); //STOP condition
      4da:	84 e9       	ldi	r24, 0x94	; 148
      4dc:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
      4e0:	8f e9       	ldi	r24, 0x9F	; 159
@@ -709,21 +689,12 @@ void stop(void)
      4ec:	08 95       	ret
 
 000004ee <write_i2c>:
-	_delay_ms(1);
-}
-
-void write_i2c(uint8_t data)
-{
-	TWDR = data; //Byte to write
      4ee:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7f80bb>
-	TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWEA); //writing with acknowledge (TWEA=1)
      4f2:	84 ec       	ldi	r24, 0xC4	; 196
      4f4:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
-	while((TWCR & (1<<TWINT))==0); //wait until TWINT=0 (TWI then finish)
      4f8:	80 91 bc 00 	lds	r24, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7f80bc>
      4fc:	88 23       	and	r24, r24
      4fe:	e4 f7       	brge	.-8      	; 0x4f8 <write_i2c+0xa>
-}
      500:	08 95       	ret
 
 00000502 <lcd_i2c_reset>:
