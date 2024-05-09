@@ -1,0 +1,19 @@
+
+COMANDOS PARA EL ENCENDIDO DEL LED RGB
+
+RED
+BLUE
+GREEN 
+YELLOW
+PURE -->Muestra el color purpura
+CELS -->Muestra el color celeste
+
+COMANDOS PARA LA MODIFICACIÓN DEL PWM EN EL LED
+
+R### 	--->EJEMPLO: G100, R255, B004. 
+G###
+B###
+
+COMANDO ESPECIAL
+
+F --> Muestra colores alternantes

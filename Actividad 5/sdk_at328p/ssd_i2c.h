@@ -18,6 +18,7 @@ void set_cursor(uint8_t x, uint8_t y);
 void graphic(void);
 void write_adc(void);
 void ssd_num_write(char dato, char pwn_select,int position);
+void ssd_num_write_data(char *dato, int position);
 void graph_volt(float voltage, char loc);
 void clear_graph(void);
 void clear_screen(void);

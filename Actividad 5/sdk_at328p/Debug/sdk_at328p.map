@@ -81,14 +81,8 @@ Discarded input sections
                 0x00000000       0x26 ssd_i2c.o
  .text.graph_volt
                 0x00000000      0x1a2 ssd_i2c.o
- .text.write_lcd_state
-                0x00000000       0xfa ssd_i2c.o
- .rodata.LF.1805
+ .rodata.LF.1808
                 0x00000000       0x15 ssd_i2c.o
- .rodata.purple
-                0x00000000       0x24 ssd_i2c.o
- .rodata.yellow
-                0x00000000       0x24 ssd_i2c.o
  .rodata.led    0x00000000       0x4e ssd_i2c.o
  .rodata.volt   0x00000000        0x6 ssd_i2c.o
  .text          0x00000000        0x0 timers.o
@@ -121,12 +115,6 @@ Discarded input sections
                 0x00000000        0xe usart.o
  .text.usart_transmit_string
                 0x00000000       0x32 usart.o
- .bss.reception_state3
-                0x00000000        0x2 usart.o
- .bss.reception_state2
-                0x00000000        0x2 usart.o
- .bss.reception_state1
-                0x00000000        0x2 usart.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(cmpsf2.o)
@@ -371,7 +359,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x8e2
+.text           0x00000000     0x1158
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -380,44 +368,48 @@ END GROUP
  *(.progmem.gcc*)
  .progmem.gcc_sw_table.ssd_num_write
                 0x00000068       0x18 ssd_i2c.o
-                0x00000080                . = ALIGN (0x2)
-                0x00000080                __trampolines_start = .
+ .progmem.gcc_sw_table.write_lcd_state
+                0x00000080        0xe ssd_i2c.o
+ .progmem.gcc_sw_table.ssd_num_write_data
+                0x0000008e       0x18 ssd_i2c.o
+                0x000000a6                . = ALIGN (0x2)
+                0x000000a6                __trampolines_start = .
  *(.trampolines)
- .trampolines   0x00000080        0x0 linker stubs
+ .trampolines   0x000000a6        0x0 linker stubs
  *(.trampolines*)
-                0x00000080                __trampolines_end = .
+                0x000000a6                __trampolines_end = .
  *libprintf_flt.a:*(.progmem.data)
  *libc.a:*(.progmem.data)
  *(.progmem*)
-                0x00000080                . = ALIGN (0x2)
+                0x000000a6                . = ALIGN (0x2)
  *(.jumptables)
  *(.jumptables*)
  *(.lowtext)
  *(.lowtext*)
-                0x00000080                __ctors_start = .
+                0x000000a6                __ctors_start = .
  *(.ctors)
-                0x00000080                __ctors_end = .
-                0x00000080                __dtors_start = .
+                0x000000a6                __ctors_end = .
+                0x000000a6                __dtors_start = .
  *(.dtors)
-                0x00000080                __dtors_end = .
+                0x000000a6                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x00000080        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
-                0x00000080                __init
+ .init0         0x000000a6        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
+                0x000000a6                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x00000080        0xc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
+ .init2         0x000000a6        0xc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x0000008c       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
-                0x0000008c                __do_copy_data
- .init4         0x000000a2       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
-                0x000000a2                __do_clear_bss
+ .init4         0x000000b2       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_copy_data.o)
+                0x000000b2                __do_copy_data
+ .init4         0x000000c8       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_clear_bss.o)
+                0x000000c8                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -428,95 +420,101 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x000000b2        0x8 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
+ .init9         0x000000d8        0x8 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
  *(.init9)
  *(.text)
- .text          0x000000ba        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
-                0x000000ba                __vector_22
-                0x000000ba                __vector_1
-                0x000000ba                __vector_24
-                0x000000ba                __vector_12
-                0x000000ba                __bad_interrupt
-                0x000000ba                __vector_6
-                0x000000ba                __vector_3
-                0x000000ba                __vector_23
-                0x000000ba                __vector_25
-                0x000000ba                __vector_13
-                0x000000ba                __vector_17
-                0x000000ba                __vector_19
-                0x000000ba                __vector_7
-                0x000000ba                __vector_5
-                0x000000ba                __vector_4
-                0x000000ba                __vector_9
-                0x000000ba                __vector_2
-                0x000000ba                __vector_21
-                0x000000ba                __vector_15
-                0x000000ba                __vector_8
-                0x000000ba                __vector_14
-                0x000000ba                __vector_10
-                0x000000ba                __vector_20
-                0x000000be                . = ALIGN (0x2)
+ .text          0x000000e0        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
+                0x000000e0                __vector_22
+                0x000000e0                __vector_1
+                0x000000e0                __vector_24
+                0x000000e0                __vector_12
+                0x000000e0                __bad_interrupt
+                0x000000e0                __vector_6
+                0x000000e0                __vector_3
+                0x000000e0                __vector_23
+                0x000000e0                __vector_25
+                0x000000e0                __vector_13
+                0x000000e0                __vector_17
+                0x000000e0                __vector_19
+                0x000000e0                __vector_7
+                0x000000e0                __vector_5
+                0x000000e0                __vector_4
+                0x000000e0                __vector_9
+                0x000000e0                __vector_2
+                0x000000e0                __vector_21
+                0x000000e0                __vector_15
+                0x000000e0                __vector_8
+                0x000000e0                __vector_14
+                0x000000e0                __vector_10
+                0x000000e0                __vector_20
+                0x000000e4                . = ALIGN (0x2)
  *(.text.*)
  .text.init_i2c
-                0x000000be       0x12 i2c.o
-                0x000000be                init_i2c
- .text.start    0x000000d0       0x10 i2c.o
-                0x000000d0                start
- .text.stop     0x000000e0       0x14 i2c.o
-                0x000000e0                stop
+                0x000000e4       0x12 i2c.o
+                0x000000e4                init_i2c
+ .text.start    0x000000f6       0x10 i2c.o
+                0x000000f6                start
+ .text.stop     0x00000106       0x14 i2c.o
+                0x00000106                stop
  .text.write_i2c
-                0x000000f4       0x14 i2c.o
-                0x000000f4                write_i2c
+                0x0000011a       0x14 i2c.o
+                0x0000011a                write_i2c
  .text.lcd_i2c_reset
-                0x00000108       0x88 lcd_i2c.o
-                0x00000108                lcd_i2c_reset
- .text.pwm_led  0x00000190       0x48 LEDPWM.o
-                0x00000190                pwm_led
- .text.main     0x000001d8       0x20 main.o
-                0x000001d8                main
+                0x0000012e       0x88 lcd_i2c.o
+                0x0000012e                lcd_i2c_reset
+ .text.pwm_led  0x000001b6       0x6c LEDPWM.o
+                0x000001b6                pwm_led
+ .text.main     0x00000222       0x20 main.o
+                0x00000222                main
  .text.init_ports
-                0x000001f8       0x14 ports.o
-                0x000001f8                init_ports
+                0x00000242       0x14 ports.o
+                0x00000242                init_ports
  .text.ssd_i2c_cmd
-                0x0000020c       0x3a ssd_i2c.o
-                0x0000020c                ssd_i2c_cmd
+                0x00000256       0x3a ssd_i2c.o
+                0x00000256                ssd_i2c_cmd
  .text.ssd_i2c_init
-                0x00000246       0x94 ssd_i2c.o
-                0x00000246                ssd_i2c_init
+                0x00000290       0x94 ssd_i2c.o
+                0x00000290                ssd_i2c_init
  .text.ssd_write
-                0x000002da       0x3a ssd_i2c.o
-                0x000002da                ssd_write
+                0x00000324       0x3a ssd_i2c.o
+                0x00000324                ssd_write
  .text.set_cursor
-                0x00000314       0x56 ssd_i2c.o
-                0x00000314                set_cursor
+                0x0000035e       0x56 ssd_i2c.o
+                0x0000035e                set_cursor
  .text.ssd_num_write
-                0x0000036a      0x202 ssd_i2c.o
-                0x0000036a                ssd_num_write
+                0x000003b4      0x202 ssd_i2c.o
+                0x000003b4                ssd_num_write
  .text.clear_screen
-                0x0000056c       0x3e ssd_i2c.o
-                0x0000056c                clear_screen
+                0x000005b6       0x3e ssd_i2c.o
+                0x000005b6                clear_screen
+ .text.write_lcd_state
+                0x000005f4      0x114 ssd_i2c.o
+                0x000005f4                write_lcd_state
  .text.write_led
-                0x000005aa       0xae ssd_i2c.o
-                0x000005aa                write_led
+                0x00000708       0xae ssd_i2c.o
+                0x00000708                write_led
+ .text.ssd_num_write_data
+                0x000007b6      0x190 ssd_i2c.o
+                0x000007b6                ssd_num_write_data
  .text.__vector_16
-                0x00000658       0x3a timers.o
-                0x00000658                __vector_16
+                0x00000946       0x3a timers.o
+                0x00000946                __vector_16
  .text.__vector_11
-                0x00000692       0x24 timers.o
-                0x00000692                __vector_11
+                0x00000980       0x24 timers.o
+                0x00000980                __vector_11
  .text.__vector_18
-                0x000006b6      0x1f0 usart.o
-                0x000006b6                __vector_18
+                0x000009a4      0x778 usart.o
+                0x000009a4                __vector_18
  .text.init_usart
-                0x000008a6       0x2c usart.o
-                0x000008a6                init_usart
- .text.libgcc   0x000008d2        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
-                0x000008d2                __tablejump2__
-                0x000008de                . = ALIGN (0x2)
+                0x0000111c       0x2c usart.o
+                0x0000111c                init_usart
+ .text.libgcc   0x00001148        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
+                0x00001148                __tablejump2__
+                0x00001154                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000008de        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x000008de                _exit
-                0x000008de                exit
+ .fini9         0x00001154        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00001154                _exit
+                0x00001154                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -535,11 +533,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000008de        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00001154        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000008e2                _etext = .
+                0x00001158                _etext = .
 
-.data           0x00800100       0x90 load address 0x000008e2
+.data           0x00800100      0x126 load address 0x00001158
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -548,69 +546,98 @@ END GROUP
  *(.rodata*)
  .rodata.equal  0x00800100        0x6 ssd_i2c.o
                 0x00800100                equal
- .rodata.green  0x00800106       0x1e ssd_i2c.o
-                0x00800106                green
- .rodata.red    0x00800124       0x12 ssd_i2c.o
-                0x00800124                red
- .rodata.blue   0x00800136       0x18 ssd_i2c.o
-                0x00800136                blue
- .rodata.dot    0x0080014e        0x6 ssd_i2c.o
-                0x0080014e                dot
- .rodata.n9     0x00800154        0x6 ssd_i2c.o
-                0x00800154                n9
- .rodata.n8     0x0080015a        0x6 ssd_i2c.o
-                0x0080015a                n8
- .rodata.n7     0x00800160        0x6 ssd_i2c.o
-                0x00800160                n7
- .rodata.n6     0x00800166        0x6 ssd_i2c.o
-                0x00800166                n6
- .rodata.n5     0x0080016c        0x6 ssd_i2c.o
-                0x0080016c                n5
- .rodata.n4     0x00800172        0x6 ssd_i2c.o
-                0x00800172                n4
- .rodata.n3     0x00800178        0x6 ssd_i2c.o
-                0x00800178                n3
- .rodata.n2     0x0080017e        0x6 ssd_i2c.o
-                0x0080017e                n2
- .rodata.n1     0x00800184        0x6 ssd_i2c.o
-                0x00800184                n1
- .rodata.n0     0x0080018a        0x6 ssd_i2c.o
-                0x0080018a                n0
+ .rodata.celeste
+                0x00800106       0x2a ssd_i2c.o
+                0x00800106                celeste
+ .rodata.purple
+                0x00800130       0x24 ssd_i2c.o
+                0x00800130                purple
+ .rodata.yellow
+                0x00800154       0x24 ssd_i2c.o
+                0x00800154                yellow
+ .rodata.green  0x00800178       0x1e ssd_i2c.o
+                0x00800178                green
+ .rodata.red    0x00800196       0x12 ssd_i2c.o
+                0x00800196                red
+ .rodata.blue   0x008001a8       0x18 ssd_i2c.o
+                0x008001a8                blue
+ .rodata.dot    0x008001c0        0x6 ssd_i2c.o
+                0x008001c0                dot
+ .rodata.n9     0x008001c6        0x6 ssd_i2c.o
+                0x008001c6                n9
+ .rodata.n8     0x008001cc        0x6 ssd_i2c.o
+                0x008001cc                n8
+ .rodata.n7     0x008001d2        0x6 ssd_i2c.o
+                0x008001d2                n7
+ .rodata.n6     0x008001d8        0x6 ssd_i2c.o
+                0x008001d8                n6
+ .rodata.n5     0x008001de        0x6 ssd_i2c.o
+                0x008001de                n5
+ .rodata.n4     0x008001e4        0x6 ssd_i2c.o
+                0x008001e4                n4
+ .rodata.n3     0x008001ea        0x6 ssd_i2c.o
+                0x008001ea                n3
+ .rodata.n2     0x008001f0        0x6 ssd_i2c.o
+                0x008001f0                n2
+ .rodata.n1     0x008001f6        0x6 ssd_i2c.o
+                0x008001f6                n1
+ .rodata.n0     0x008001fc        0x6 ssd_i2c.o
+                0x008001fc                n0
+ .rodata.str1.1
+                0x00800202       0x24 usart.o
  *(.gnu.linkonce.r*)
-                0x00800190                . = ALIGN (0x2)
-                0x00800190                _edata = .
-                0x00800190                PROVIDE (__data_end, .)
+                0x00800226                . = ALIGN (0x2)
+                0x00800226                _edata = .
+                0x00800226                PROVIDE (__data_end, .)
 
-.bss            0x00800190       0x11
-                0x00800190                PROVIDE (__bss_start, .)
+.bss            0x00800226       0x1d
+                0x00800226                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.state     0x00800190        0x2 usart.o
-                0x00800190                state
+ .bss.state     0x00800226        0x2 usart.o
+                0x00800226                state
+ .bss.reception_state0
+                0x00800228        0x2 usart.o
+                0x00800228                reception_state0
+ .bss.reception_state5
+                0x0080022a        0x2 usart.o
+                0x0080022a                reception_state5
+ .bss.reception_state4
+                0x0080022c        0x2 usart.o
+                0x0080022c                reception_state4
+ .bss.reception_state3
+                0x0080022e        0x2 usart.o
+                0x0080022e                reception_state3
+ .bss.reception_state2
+                0x00800230        0x2 usart.o
+                0x00800230                reception_state2
+ .bss.reception_state1
+                0x00800232        0x2 usart.o
+                0x00800232                reception_state1
  .bss.reception_state
-                0x00800192        0x2 usart.o
-                0x00800192                reception_state
+                0x00800234        0x2 usart.o
+                0x00800234                reception_state
  *(COMMON)
- COMMON         0x00800194        0x1 timers.o
-                0x00800194                tot_overflow
- COMMON         0x00800195        0xc usart.o
-                0x00800195                ci
-                0x00800197                b
-                0x00800198                usart_received_char
-                0x00800199                bi
-                0x0080019b                ai
-                0x0080019d                di
-                0x0080019f                c
-                0x008001a0                a
-                0x008001a1                PROVIDE (__bss_end, .)
-                0x000008e2                __data_load_start = LOADADDR (.data)
-                0x00000972                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800236        0x1 timers.o
+                0x00800236                tot_overflow
+ COMMON         0x00800237        0xc usart.o
+                0x00800237                ci
+                0x00800239                b
+                0x0080023a                usart_received_char
+                0x0080023b                bi
+                0x0080023d                ai
+                0x0080023f                di
+                0x00800241                c
+                0x00800242                a
+                0x00800243                PROVIDE (__bss_end, .)
+                0x00001158                __data_load_start = LOADADDR (.data)
+                0x0000127e                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008001a1        0x0
+.noinit         0x00800243        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x008001a1                _end = .
+                0x00800243                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -682,7 +709,7 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x220
+.debug_aranges  0x00000000      0x228
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x40 i2c.o
@@ -695,63 +722,63 @@ END GROUP
  .debug_aranges
                 0x000000d8       0x20 ports.o
  .debug_aranges
-                0x000000f8       0x78 ssd_i2c.o
+                0x000000f8       0x80 ssd_i2c.o
  .debug_aranges
-                0x00000170       0x70 timers.o
+                0x00000178       0x70 timers.o
  .debug_aranges
-                0x000001e0       0x40 usart.o
+                0x000001e8       0x40 usart.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x27e9
+.debug_info     0x00000000     0x3359
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_info    0x000005f4      0x177 i2c.o
  .debug_info    0x0000076b      0x778 lcd_i2c.o
- .debug_info    0x00000ee3       0xa5 LEDPWM.o
- .debug_info    0x00000f88      0x116 main.o
- .debug_info    0x0000109e       0x83 ports.o
- .debug_info    0x00001121     0x12a7 ssd_i2c.o
- .debug_info    0x000023c8      0x1ba timers.o
- .debug_info    0x00002582      0x267 usart.o
+ .debug_info    0x00000ee3       0xa2 LEDPWM.o
+ .debug_info    0x00000f85      0x116 main.o
+ .debug_info    0x0000109b       0x83 ports.o
+ .debug_info    0x0000111e     0x1529 ssd_i2c.o
+ .debug_info    0x00002647      0x1ba timers.o
+ .debug_info    0x00002801      0xb58 usart.o
 
-.debug_abbrev   0x00000000      0xdc5
+.debug_abbrev   0x00000000      0xe6e
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_abbrev  0x000005a2       0xf8 i2c.o
  .debug_abbrev  0x0000069a      0x18d lcd_i2c.o
- .debug_abbrev  0x00000827       0x6f LEDPWM.o
- .debug_abbrev  0x00000896       0x81 main.o
- .debug_abbrev  0x00000917       0x51 ports.o
- .debug_abbrev  0x00000968      0x24b ssd_i2c.o
- .debug_abbrev  0x00000bb3      0x100 timers.o
- .debug_abbrev  0x00000cb3      0x112 usart.o
+ .debug_abbrev  0x00000827       0x60 LEDPWM.o
+ .debug_abbrev  0x00000887       0x81 main.o
+ .debug_abbrev  0x00000908       0x51 ports.o
+ .debug_abbrev  0x00000959      0x254 ssd_i2c.o
+ .debug_abbrev  0x00000bad      0x100 timers.o
+ .debug_abbrev  0x00000cad      0x1c1 usart.o
 
-.debug_line     0x00000000     0x17a2
+.debug_line     0x00000000     0x1d6f
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x134 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_line    0x00000134      0x1af i2c.o
  .debug_line    0x000002e3      0x380 lcd_i2c.o
- .debug_line    0x00000663       0xdd LEDPWM.o
- .debug_line    0x00000740       0x8f main.o
- .debug_line    0x000007cf       0xb4 ports.o
- .debug_line    0x00000883      0xa40 ssd_i2c.o
- .debug_line    0x000012c3      0x2a8 timers.o
- .debug_line    0x0000156b      0x237 usart.o
+ .debug_line    0x00000663      0x101 LEDPWM.o
+ .debug_line    0x00000764       0x8f main.o
+ .debug_line    0x000007f3       0xb4 ports.o
+ .debug_line    0x000008a7      0xc5b ssd_i2c.o
+ .debug_line    0x00001502      0x2a8 timers.o
+ .debug_line    0x000017aa      0x5c5 usart.o
 
-.debug_frame    0x00000000      0x4e0
+.debug_frame    0x00000000      0x508
  *(.debug_frame)
  .debug_frame   0x00000000       0x64 i2c.o
  .debug_frame   0x00000064       0xe4 lcd_i2c.o
  .debug_frame   0x00000148       0x24 LEDPWM.o
  .debug_frame   0x0000016c       0x24 main.o
  .debug_frame   0x00000190       0x24 ports.o
- .debug_frame   0x000001b4      0x180 ssd_i2c.o
- .debug_frame   0x00000334       0xec timers.o
- .debug_frame   0x00000420       0xc0 usart.o
+ .debug_frame   0x000001b4      0x1a0 ssd_i2c.o
+ .debug_frame   0x00000354       0xec timers.o
+ .debug_frame   0x00000440       0xc8 usart.o
 
-.debug_str      0x00000000      0x7ed
+.debug_str      0x00000000      0x83b
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_str     0x00000208      0x195 i2c.o
@@ -764,21 +791,21 @@ END GROUP
                                 0x1a6 (size before relaxing)
  .debug_str     0x0000053f        0xd ports.o
                                 0x172 (size before relaxing)
- .debug_str     0x0000054c       0xc2 ssd_i2c.o
-                                0x2cf (size before relaxing)
- .debug_str     0x0000060e      0x133 timers.o
+ .debug_str     0x0000054c       0xdd ssd_i2c.o
+                                0x2ea (size before relaxing)
+ .debug_str     0x00000629      0x133 timers.o
                                 0x28d (size before relaxing)
- .debug_str     0x00000741       0xac usart.o
-                                0x237 (size before relaxing)
+ .debug_str     0x0000075c       0xdf usart.o
+                                0x2d8 (size before relaxing)
 
-.debug_loc      0x00000000     0x1761
+.debug_loc      0x00000000     0x1c37
  *(.debug_loc)
  .debug_loc     0x00000000       0x73 i2c.o
  .debug_loc     0x00000073      0x703 lcd_i2c.o
- .debug_loc     0x00000776       0x28 LEDPWM.o
- .debug_loc     0x0000079e      0xd39 ssd_i2c.o
- .debug_loc     0x000014d7       0xf6 timers.o
- .debug_loc     0x000015cd      0x194 usart.o
+ .debug_loc     0x00000776       0x60 LEDPWM.o
+ .debug_loc     0x000007d6      0xfe5 ssd_i2c.o
+ .debug_loc     0x000017bb       0xf6 timers.o
+ .debug_loc     0x000018b1      0x386 usart.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -798,16 +825,16 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x2a8
+.debug_ranges   0x00000000      0x3d0
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x30 i2c.o
  .debug_ranges  0x00000030       0x48 lcd_i2c.o
  .debug_ranges  0x00000078       0x10 LEDPWM.o
  .debug_ranges  0x00000088       0x10 main.o
  .debug_ranges  0x00000098       0x10 ports.o
- .debug_ranges  0x000000a8      0x170 ssd_i2c.o
- .debug_ranges  0x00000218       0x60 timers.o
- .debug_ranges  0x00000278       0x30 usart.o
+ .debug_ranges  0x000000a8      0x280 ssd_i2c.o
+ .debug_ranges  0x00000328       0x60 timers.o
+ .debug_ranges  0x00000388       0x48 usart.o
 
 .debug_macro
  *(.debug_macro)

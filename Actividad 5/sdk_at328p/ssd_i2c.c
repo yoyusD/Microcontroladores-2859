@@ -294,10 +294,6 @@ void ssd_num_write(char dato, char pwn_select,int position){
 	}
 	
 
-
-
-
-
 void clear_graph(void){
 	int i;
 	set_cursor(4,65);
@@ -386,45 +382,67 @@ const unsigned char purple[] = {
 	0x7F, 0x49, 0x49, 0x49, 0x41,0x00   // E
 };
 
+const unsigned char celeste[] = {
+	0x3E, 0x41, 0x41, 0x41, 0x22,0x00,  // C
+	0x7F, 0x49, 0x49, 0x49, 0x41,0x00,  // E
+	0x7F, 0x40, 0x40, 0x40, 0x40,0x00,  // L
+	0x7F, 0x49, 0x49, 0x49, 0x41,0x00,  // E
+	0x46, 0x49, 0x49, 0x49, 0x31,0x00,  // S
+	0x01, 0x01, 0x7F, 0x01, 0x01,0x00,  // T
+	0x7F, 0x49, 0x49, 0x49, 0x41,0x00   // E
+};
+
 
 void write_lcd_state(char data){
-	set_cursor(4,65);
-	for(int n=0;n<35;n++){
-		ssd_write(0x00);
-	}
+	
+	
 	switch(data){
 		case 3:
-		set_cursor(4,65);
+		set_cursor(6,0);
 		for( int i = 0; i < 30; i++){
 			ssd_write(blue[i]);
 		}
 		break; 
 		
 		case 1:
-		set_cursor(4,65);
+		set_cursor(6,0);
 		for( int j = 0; j < 18; j++){
 			ssd_write(red[j]);
 		}
 		break;
 		
 		case 2:
-		set_cursor(4,65);
+		set_cursor(6,0);
 		for( int k = 0; k < 30; k++){
 			ssd_write(green[k]);
 		}
 		break;
 		
 		case 5:
-		set_cursor(4,65);
+		set_cursor(6,0);
 		for( int y = 0; y < 36; y++){
 			ssd_write(yellow[y]);
 		}
 		break;
 		
 		case 4:
-		set_cursor(4,65);
+		set_cursor(6,0);
 		for( int p = 0; p < 36; p++){
 			ssd_write(purple[p]);
+		}
+		break;
+		
+		case 6:
+		set_cursor(6,0);
+		for(int d = 0; d < 42 ;d++){
+			ssd_write(celeste[d]);
+		}
+		break;
+		
+		case 7: 
+		set_cursor(6,0); //Clear 
+		for(int v = 0; v < 42 ;v++){
+			ssd_write(0x00);
 		}
 		break;
 		
@@ -465,5 +483,84 @@ void write_led(void){
 		ssd_write(equal[j]);
 	}
 
+}
+
+void ssd_num_write_data(char *dato, int position){
+	// This function simply changes the writing position of the voltage to be displayed on each adc
+	char i; 
+	if(position == 1){
+	set_cursor(2,25);
+	}
+	else if (position == 2)
+	{
+	set_cursor(3,38);	
+	}
+	else if (position == 3)
+	{
+	set_cursor(4,32);
+	}
+	
+	
+	ssd_write(0x00);
+	for(i=0; i<3; i++){
+		switch(dato[i]){
+			case '0':
+			for( char r = 0; r < 6; r++){
+				ssd_write(n0[r]);
+			}
+			break;
+			case '1':
+			for( char r = 0; r < 6; r++){
+				ssd_write(n1[r]);
+			}
+			break;
+			case '2':
+			for( char r = 0; r < 6; r++){
+				ssd_write(n2[r]);
+			}
+			break;
+			case '3':
+			for( char r = 0; r < 6; r++){
+				ssd_write(n3[r]);
+			}
+			break;
+			case '4':
+			for( char r = 0; r < 6; r++){
+				ssd_write(n4[r]);
+			}
+			break;
+			case '5':
+			for( char r = 0; r < 6; r++){
+				ssd_write(n5[r]);
+			}
+			break;
+			case '6':
+			for( char r = 0; r < 6; r++){
+				ssd_write(n6[r]);
+			}
+			break;
+			case '7':
+			for( char r = 0; r < 6; r++){
+				ssd_write(n7[r]);
+			}
+			break;
+			case '8':
+			for( char r = 0; r < 6; r++){
+				ssd_write(n8[r]);
+			}
+			break;
+			case '9':
+			for( char r = 0; r < 6; r++){
+				ssd_write(n9[r]);
+			}
+			break;
+			case '.':
+			for( char r = 0; r < 6; r++){
+				ssd_write(dot[r]);
+			}
+			break;
+		}
+	}
+	
 }
 
